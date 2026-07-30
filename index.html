@@ -416,19 +416,14 @@
         <div class="proj-title">Gestor de productos</div>
         <div class="proj-desc">
           Sistema full-stack para administrar productos, categorías y stock,
-          con foco en <b>integridad transaccional de los datos</b>. La decisión
-          de diseño central: el stock nunca se escribe directo, siempre se
-          deriva de un historial de movimientos (entradas/salidas) — ni al
-          crear un producto ni al editarlo.
+          con foco en <b>integridad transaccional de los datos</b>
           <br><br>
-          <b>Detalles técnicos que vale la pena resaltar:</b> cada movimiento
+          cada movimiento
           corre dentro de una transacción SQL con bloqueo de fila
           (<code>SELECT ... FOR UPDATE</code>) para evitar condiciones de
           carrera entre movimientos simultáneos sobre el mismo producto, y
-          validación en dos capas para que el stock nunca quede negativo
-          (a nivel de aplicación y con un <code>CHECK constraint</code> en
-          la base de datos). Incluye además un panel de control con KPIs y
-          gráficos de entradas/salidas construidos con queries agregadas.
+          validación para que el stock nunca quede negativo. Incluye además un panel de control con KPIs y
+          gráficos de entradas/salidas
           <br><br>
           <b>Mi rol:</b> desarrollo full-stack — modelado de la base de
           datos, API REST en Node.js/Express, y panel de control en React.
@@ -451,17 +446,15 @@
       <div class="pane" id="pane-project3">
         <div class="proj-title">Bot asistente en telegram</div>
         <div class="proj-desc">
-            Un bot conversacional que actúa como asistente personal de recordatorios. En vez de un formulario o comandos rígidos, el usuario interactúa con él de forma natural:
+            Un bot conversacional que actúa como asistente personal de recordatorios. En vez de un formulario o comandos rígidos, 
+            el usuario interactúa con él de forma natural:
             el bot pregunta qué quiere recordar, cuándo, y con qué frecuencia (única vez, diaria, semanal o mensual),
             guiando la conversación paso a paso mediante una máquina de estados.
             <br><br>
-            Lo que lo distingue de un recordatorio simple es la persistencia real: 
             los recordatorios se guardan en una base de datos SQLite, no solo en memoria, así que sobreviven a un reinicio del bot — al volver a levantarse, 
             recarga automáticamente todos los pendientes y los reprograma, e incluso envía de inmediato cualquier recordatorio de única vez que debió dispararse mientras el bot estaba apagado.
             <br><br>
             El usuario también puede listar sus recordatorios activos y cancelar cualquiera por su id, sin perder el resto.
-            <br><br>
-            Está pensado para uso personal en un chat privado con el bot — no maneja múltiples usuarios en un mismo grupo ni permisos entre ellos, es un asistente 1 a 1.
         </div>
         <div class="proj-tags">
           <span class="pill">Python</span><span class="pill">python-telegram-bot</span><span class="pill">APScheduler</span><span class="pill">SQLite</span>
