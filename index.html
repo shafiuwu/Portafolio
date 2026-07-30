@@ -266,6 +266,31 @@
     .gutter { display: none; }
     .line-numbered { gap: 0; }
   }
+
+.proj-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+}
+.proj-gallery img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.proj-gallery img:hover {
+    opacity: 0.85;
+    transform: scale(1.01);
+}
+@media (max-width: 780px) {
+    .proj-gallery {
+        grid-template-columns: 1fr; /* en celular, una debajo de otra */
+    }
+}
 </style>
 </head>
 <body>
@@ -378,7 +403,12 @@
           <a href="https://github.com/shafiuwu/Capstone" target="_blank">↗ Código en GitHub</a>
         </div>
         <hr class="proj-divider">
-        <div class="proj-comment">// tip: agrega un GIF o screenshot aquí con &lt;img src="..."&gt;</div>
+        <div class="proj-gallery">
+          <a href="assets/impulsa1.png" target="_blank"><img src="assets/impulsa1.png" alt="Pagina principal"></a>
+          <a href="assets/impulsa2.png" target="_blank"><img src="assets/impulsa2.png" alt="Nosotros"></a>
+          <a href="assets/impulsa3.png" target="_blank"><img src="assets/impulsa3.png" alt="Login"></a>
+          <a href="assets/impulsa4.png" target="_blank"><img src="assets/impulsa4.png" alt="Destacados"></a>
+        </div>
       </div>
 
       <!-- PROJECT 2 PANE -->
@@ -407,19 +437,31 @@
           <span class="pill">TypeScript</span><span class="pill">GraphQL</span><span class="pill">Docker</span>
         </div>
         <div class="proj-links">
-          <a href="#" target="_blank">↗ Demo en vivo</a>
-          <a href="#" target="_blank">↗ Código en GitHub</a>
+          <a href="https://github.com/shafiuwu/Gestor-de-inventario" target="_blank">↗ Código en GitHub</a>
         </div>
+        <div class="proj-gallery">
+          <a href="assets/Gestor1.png" target="_blank"><img src="assets/Gestor1.png" alt="Panel de control del Gestor de Inventario"></a>
+          <a href="assets/Gestor2.png" target="_blank"><img src="assets/Gestor2.png" alt="Vista de productos e inventario"></a>
+          <a href="assets/Gestor3.png" target="_blank"><img src="assets/Gestor3.png" alt="Registro de movimientos de stock"></a>
+          <a href="assets/Gestor1.png" target="_blank"><img src="assets/Gestor4.png" alt="Detalle de un movimiento"></a>
+      </div>
       </div>
 
       <!-- PROJECT 3 PANE -->
       <div class="pane" id="pane-project3">
         <div class="proj-title">Bot asistente en telegram</div>
         <div class="proj-desc">
-          El bot te permite crear recordatorios conversando con él (te pregunta qué quieres recordar, cuándo, y con qué frecuencia),
-          y se encarga de avisarte a la hora exacta — incluso si reinicias el bot entre medio, o si el recordatorio es recurrente.
-
-          Pensado para uso personal en un chat privado con el bot (no está diseñado para uso en grupos con múltiples usuarios).
+            Un bot conversacional que actúa como asistente personal de recordatorios. En vez de un formulario o comandos rígidos, el usuario interactúa con él de forma natural:
+            el bot pregunta qué quiere recordar, cuándo, y con qué frecuencia (única vez, diaria, semanal o mensual),
+            guiando la conversación paso a paso mediante una máquina de estados.
+            <br><br>
+            Lo que lo distingue de un recordatorio simple es la persistencia real: 
+            los recordatorios se guardan en una base de datos SQLite, no solo en memoria, así que sobreviven a un reinicio del bot — al volver a levantarse, 
+            recarga automáticamente todos los pendientes y los reprograma, e incluso envía de inmediato cualquier recordatorio de única vez que debió dispararse mientras el bot estaba apagado.
+            <br><br>
+            El usuario también puede listar sus recordatorios activos y cancelar cualquiera por su id, sin perder el resto.
+            <br><br>
+            Está pensado para uso personal en un chat privado con el bot — no maneja múltiples usuarios en un mismo grupo ni permisos entre ellos, es un asistente 1 a 1.
         </div>
         <div class="proj-tags">
           <span class="pill">Python</span><span class="pill">python-telegram-bot</span><span class="pill">APScheduler</span><span class="pill">SQLite</span>
@@ -427,6 +469,9 @@
         <div class="proj-links">
           <a href="http://github.com/shafiuwu/Bot_telegram/tree/main" target="_blank">↗ Código en GitHub</a>
         </div>
+       <div class="proj-gallery">
+          <a href="assets/telegram.png" target="_blank"><img src="assets/telegram.png" alt="Mensaje"></a>
+      </div>
       </div>
 
       <!-- CONTACT PANE -->
@@ -510,7 +555,7 @@
 
   function closeTab(e, name, currentActive) {
     e.stopPropagation();
-    if (openTabs.size === 1) return; // keep at least one tab open
+    if (openTabs.size === 1) return; 
     openTabs.delete(name);
     const next = currentActive === name ? Array.from(openTabs)[0] : currentActive;
     openTab(next);
